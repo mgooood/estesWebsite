@@ -1,0 +1,1020 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Estes Appliance Service – Northern Virginia Appliance Repair</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #1a2744;
+      --navy-light: #243156;
+      --gold: #c9922a;
+      --gold-light: #e8b44a;
+      --cream: #faf8f5;
+      --gray-100: #f4f4f5;
+      --gray-400: #a1a1aa;
+      --gray-600: #52525b;
+      --gray-800: #27272a;
+      --white: #ffffff;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,.12), 0 1px 2px rgba(0,0,0,.08);
+      --shadow-md: 0 4px 16px rgba(0,0,0,.15);
+      --shadow-lg: 0 10px 40px rgba(0,0,0,.2);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    section[id], div[id] { scroll-margin-top: 72px; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--gray-800);
+      background: var(--cream);
+      line-height: 1.6;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--navy);
+      box-shadow: var(--shadow-md);
+    }
+
+    .nav-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+    }
+
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.25rem;
+      color: var(--white);
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .nav-logo span { color: var(--gold-light); }
+
+    .nav-links {
+      display: flex;
+      gap: 0.25rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: rgba(255,255,255,.8);
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-weight: 500;
+      padding: 0.5rem 0.875rem;
+      border-radius: 6px;
+      transition: background .2s, color .2s;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      background: rgba(255,255,255,.12);
+      color: var(--white);
+    }
+
+    .nav-links a.active { color: var(--gold-light); }
+
+    /* hamburger */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px;
+    }
+    .hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--white);
+      border-radius: 2px;
+      transition: transform .3s, opacity .3s;
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    .mobile-menu {
+      display: none;
+      flex-direction: column;
+      background: var(--navy-light);
+      padding: 0.75rem 1.5rem 1rem;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      color: rgba(255,255,255,.85);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      padding: 0.65rem 0;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+    .mobile-menu a:last-child { border-bottom: none; }
+    .mobile-menu a:hover { color: var(--gold-light); }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      min-height: 560px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      overflow: hidden;
+    }
+
+    .hero-image {
+      position: relative;
+      min-height: 400px;
+    }
+
+    .hero-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .hero-image::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to right, transparent 60%, var(--navy) 100%);
+    }
+
+    .hero-content {
+      background: var(--navy);
+      color: var(--white);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 3rem 3rem 3rem 2.5rem;
+      gap: 1.5rem;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(201,146,42,.2);
+      border: 1px solid rgba(201,146,42,.4);
+      color: var(--gold-light);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      padding: 0.375rem 0.875rem;
+      border-radius: 100px;
+      width: fit-content;
+    }
+
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.75rem, 3vw, 2.5rem);
+      line-height: 1.2;
+      color: var(--white);
+    }
+
+    .hero-title span { color: var(--gold-light); }
+
+    .hero-subtitle {
+      color: rgba(255,255,255,.7);
+      font-size: 0.95rem;
+      max-width: 380px;
+    }
+
+    /* service area cards */
+    .service-areas {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .area-card {
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 10px;
+      padding: 1rem 1.25rem;
+    }
+
+    .area-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      color: var(--gold-light);
+      margin-bottom: 0.25rem;
+    }
+
+    .area-name {
+      font-size: 0.9rem;
+      color: rgba(255,255,255,.9);
+      margin-bottom: 0.5rem;
+    }
+
+    .phone-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      color: var(--white);
+      font-size: 1.2rem;
+      font-weight: 700;
+      text-decoration: none;
+      letter-spacing: .02em;
+      transition: color .2s;
+    }
+
+    .phone-link:hover { color: var(--gold-light); }
+
+    .phone-icon {
+      width: 16px;
+      height: 16px;
+      fill: var(--gold-light);
+      flex-shrink: 0;
+    }
+
+    /* ── TRUST BADGES ── */
+    .trust-bar {
+      background: var(--gold);
+    }
+
+    .trust-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 1rem 1.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--navy);
+      font-weight: 600;
+      font-size: 0.875rem;
+    }
+
+    .trust-item svg {
+      width: 20px;
+      height: 20px;
+      fill: var(--navy);
+      flex-shrink: 0;
+    }
+
+    /* ── SECTIONS ── */
+    section {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 4rem 1.5rem;
+    }
+
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.5rem;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      color: var(--navy);
+      margin-bottom: 1rem;
+    }
+
+    .section-body {
+      color: var(--gray-600);
+      font-size: 0.975rem;
+      max-width: 720px;
+      line-height: 1.75;
+    }
+
+    /* ── SERVICES GRID ── */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-top: 2.5rem;
+    }
+
+    .service-card {
+      background: var(--white);
+      border: 1px solid #e4e4e7;
+      border-radius: 12px;
+      padding: 1.5rem 1.25rem;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.75rem;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .service-icon {
+      width: 44px;
+      height: 44px;
+      background: rgba(26,39,68,.08);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .service-icon svg {
+      width: 24px;
+      height: 24px;
+      stroke: var(--navy);
+      fill: none;
+      stroke-width: 1.75;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .service-name {
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: var(--gray-800);
+    }
+
+    /* ── BRANDS ── */
+    .brands-section {
+      background: var(--white);
+      border-top: 1px solid #e4e4e7;
+      border-bottom: 1px solid #e4e4e7;
+      padding: 3rem 1.5rem;
+    }
+
+    .brands-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .brands-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-top: 2rem;
+    }
+
+    .brand-pill {
+      background: var(--gray-100);
+      border: 1px solid #e4e4e7;
+      color: var(--gray-600);
+      font-size: 0.85rem;
+      font-weight: 500;
+      padding: 0.4rem 1rem;
+      border-radius: 100px;
+    }
+
+    /* ── DISCOUNTS ── */
+    .discounts-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+      margin-top: 2.5rem;
+    }
+
+    .discount-card {
+      background: var(--navy);
+      color: var(--white);
+      border-radius: 14px;
+      padding: 2rem 1.75rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      box-shadow: var(--shadow-md);
+    }
+
+    .discount-pct {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem;
+      color: var(--gold-light);
+      line-height: 1;
+    }
+
+    .discount-title {
+      font-weight: 700;
+      font-size: 1rem;
+    }
+
+    .discount-sub {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,.65);
+    }
+
+    /* ── CONTACT SECTION ── */
+    .contact-section {
+      background: var(--navy);
+      padding: 4rem 1.5rem;
+    }
+
+    .contact-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+
+    .contact-text .section-title { color: var(--white); }
+    .contact-text .section-body { color: rgba(255,255,255,.65); }
+
+    .contact-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .contact-card {
+      background: rgba(255,255,255,.07);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 12px;
+      padding: 1.25rem 1.5rem;
+    }
+
+    .contact-card-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color: var(--gold-light);
+      margin-bottom: 0.25rem;
+    }
+
+    .contact-card-region {
+      font-size: 0.875rem;
+      color: rgba(255,255,255,.75);
+      margin-bottom: 0.5rem;
+    }
+
+    .contact-phone {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--white);
+      font-size: 1.4rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: color .2s;
+    }
+    .contact-phone:hover { color: var(--gold-light); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #0f1729;
+      color: rgba(255,255,255,.5);
+      text-align: center;
+      padding: 1.5rem;
+      font-size: 0.8rem;
+    }
+
+    footer a { color: rgba(255,255,255,.65); text-decoration: none; }
+    footer a:hover { color: var(--gold-light); }
+
+    /* ── AREAS DETAIL ── */
+    .areas-detail {
+      margin-top: 2.5rem;
+      background: rgba(26,39,68,.04);
+      border: 1px solid #e4e4e7;
+      border-radius: 12px;
+      padding: 1.25rem 1.5rem;
+    }
+
+    .areas-detail-title {
+      font-weight: 600;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: .07em;
+      color: var(--navy);
+      margin-bottom: 0.75rem;
+    }
+
+    .areas-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .area-pill {
+      background: var(--white);
+      border: 1px solid #e4e4e7;
+      color: var(--gray-600);
+      font-size: 0.8rem;
+      font-weight: 500;
+      padding: 0.3rem 0.875rem;
+      border-radius: 100px;
+    }
+
+    /* ── PRICING ── */
+    .pricing-section { margin-top: 3rem; }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .pricing-card {
+      background: var(--white);
+      border: 1px solid #e4e4e7;
+      border-radius: 12px;
+      padding: 1.5rem;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .pricing-card-title {
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: var(--navy);
+      padding-bottom: 0.6rem;
+      border-bottom: 2px solid var(--gold);
+      margin-bottom: 0.75rem;
+      display: block;
+    }
+
+    .pricing-card-body {
+      font-size: 0.875rem;
+      color: var(--gray-600);
+      line-height: 1.7;
+    }
+
+    .note-callout {
+      background: rgba(201,146,42,.08);
+      border-left: 3px solid var(--gold);
+      border-radius: 0 8px 8px 0;
+      padding: 1rem 1.25rem;
+      margin-top: 1.5rem;
+      font-size: 0.875rem;
+      color: var(--gray-600);
+      line-height: 1.7;
+    }
+
+    .note-callout strong {
+      color: var(--navy);
+      display: block;
+      margin-bottom: 0.35rem;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: .07em;
+      font-weight: 700;
+    }
+
+    /* ── ABOUT ── */
+    .about-body {
+      margin-top: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.1rem;
+      max-width: 780px;
+    }
+
+    .about-body p {
+      color: var(--gray-600);
+      font-size: 0.975rem;
+      line-height: 1.8;
+    }
+
+    /* ── TRIBUTE ── */
+    .tribute-body {
+      margin-top: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.1rem;
+      max-width: 780px;
+    }
+
+    .tribute-body p {
+      color: var(--gray-600);
+      font-size: 0.975rem;
+      line-height: 1.85;
+      text-indent: 1.5em;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+
+      .hero {
+        grid-template-columns: 1fr;
+        min-height: auto;
+      }
+
+      .hero-image { min-height: 260px; }
+      .hero-image::after { display: none; }
+
+      .hero-content {
+        padding: 2rem 1.5rem;
+      }
+
+      .discounts-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .contact-inner {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+      .pricing-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 480px) {
+      .trust-inner { flex-direction: column; gap: 0.75rem; }
+      .services-grid { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- =======================================================
+     NAVIGATION
+     ======================================================= -->
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">Estes <span>Appliance Service</span></a>
+    <ul class="nav-links">
+      <li><a href="#" class="active">Home</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#contact">Contact Us</a></li>
+      <li><a href="#about">About Us</a></li>
+      <li><a href="#tribute">Tribute to Buck Estes</a></li>
+    </ul>
+    <button class="hamburger" aria-label="Toggle menu" onclick="toggleMenu(this)">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#">Home</a>
+    <a href="#services">Services</a>
+    <a href="#contact">Contact Us</a>
+    <a href="#about">About Us</a>
+    <a href="#tribute">Tribute to Buck Estes</a>
+  </div>
+</nav>
+
+<!-- =======================================================
+     HERO  –  Kitchen image + service area phone numbers
+     ======================================================= -->
+<div class="hero">
+  <div class="hero-image">
+    <img src="images/homepageImage.jpg" alt="Modern kitchen with stainless steel appliances" />
+  </div>
+  <div class="hero-content">
+    <div class="hero-badge">
+      <svg class="phone-icon" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8a19.79 19.79 0 01-3.07-8.7A2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
+      Northern Virginia's Trusted Repair
+    </div>
+    <h1 class="hero-title">Expert Appliance Repair<br /><span>You Can Count On</span></h1>
+    <p class="hero-subtitle">Licensed & insured with 35 years of experience serving Northern Virginia homes.</p>
+
+    <div class="service-areas">
+      <div class="area-card">
+        <div class="area-label">Winchester &amp; Frederick County, VA</div>
+        <div class="area-name">and surrounding areas</div>
+        <a href="tel:5405357208" class="phone-link">
+          <svg class="phone-icon" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8a19.79 19.79 0 01-3.07-8.7A2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
+          540-535-7208
+        </a>
+      </div>
+      <div class="area-card">
+        <div class="area-label">Fairfax County &amp; Arlington County, VA</div>
+        <div class="area-name">&nbsp;</div>
+        <a href="tel:7036397470" class="phone-link">
+          <svg class="phone-icon" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8a19.79 19.79 0 01-3.07-8.7A2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
+          703-639-7470
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- =======================================================
+     TRUST BAR  –  Credentials & quick facts strip
+     ======================================================= -->
+<div class="trust-bar">
+  <div class="trust-inner">
+    <div class="trust-item">
+      <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      Licensed &amp; Insured
+    </div>
+    <div class="trust-item">
+      <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
+      35 Years of Experience
+    </div>
+    <div class="trust-item">
+      <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      Gas &amp; Electric Specialists
+    </div>
+    <div class="trust-item">
+      <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+      Family-Owned &amp; Operated
+    </div>
+    <div class="trust-item">
+      <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm.5 5v5.25l4.5 2.67-.75 1.23L11 13V7h1.5z"/></svg>
+      Mon&ndash;Fri, 9am&ndash;4pm
+    </div>
+    <div class="trust-item">
+      <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.11 0-2 .89-2 2v12c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4v-6h16v6zm0-10H4V6h16v2z"/></svg>
+      Visa, MC, AmEx, Discover &mdash; Checks Preferred
+    </div>
+  </div>
+</div>
+
+<!-- =======================================================
+     SERVICES  –  Appliance types, service areas, pricing
+     ======================================================= -->
+<section id="services">
+  <div class="section-label">What We Fix</div>
+  <h2 class="section-title">Major Appliance Repair Services</h2>
+  <p class="section-body">
+    We offer high-quality service and repair on all your major appliances. We are experienced with both gas and electric appliances and here to answer your questions to the best of our ability.
+  </p>
+
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-icon">
+        <!-- Refrigerator: tall box with freezer/fridge split and handles -->
+        <svg viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="16" y1="4.5" x2="16" y2="7.5"/><line x1="16" y1="12" x2="16" y2="16"/></svg>
+      </div>
+      <span class="service-name">Refrigerators</span>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">
+        <!-- Washer: front-load box with porthole and control dots -->
+        <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="2"/><line x1="2" y1="7" x2="22" y2="7"/><circle cx="12" cy="14" r="4.5"/><circle cx="12" cy="14" r="1.5"/><circle cx="6" cy="4.5" r="1" stroke-width="1.5"/><circle cx="9" cy="4.5" r="1" stroke-width="1.5"/></svg>
+      </div>
+      <span class="service-name">Washers</span>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">
+        <!-- Dryer: front-load box with porthole and vent dot -->
+        <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="2"/><line x1="2" y1="7" x2="22" y2="7"/><circle cx="12" cy="14" r="4.5"/><path d="M9.5 13 Q12 11 14.5 13"/><path d="M9.5 15.5 Q12 13.5 14.5 15.5"/><circle cx="17" cy="4.5" r="1" stroke-width="1.5"/></svg>
+      </div>
+      <span class="service-name">Dryers</span>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">
+        <!-- Dishwasher: box with pull-down door and rack tines -->
+        <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="18" rx="2"/><line x1="2" y1="8" x2="22" y2="8"/><line x1="7" y1="13" x2="7" y2="18"/><line x1="10" y1="13" x2="10" y2="18"/><line x1="13" y1="13" x2="13" y2="18"/><line x1="16" y1="13" x2="16" y2="18"/><line x1="7" y1="13" x2="16" y2="13"/></svg>
+      </div>
+      <span class="service-name">Dishwashers</span>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">
+        <!-- Oven & Range: box with oven window + 3 stovetop burners above -->
+        <svg viewBox="0 0 24 24"><rect x="2" y="6" width="20" height="16" rx="2"/><rect x="5" y="9" width="14" height="8" rx="1"/><circle cx="7" cy="3.5" r="1.5"/><circle cx="12" cy="3.5" r="1.5"/><circle cx="17" cy="3.5" r="1.5"/></svg>
+      </div>
+      <span class="service-name">Ovens &amp; Ranges</span>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">
+        <!-- Cook Top: flat panel with 4 burner rings -->
+        <svg viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"/><circle cx="8.5" cy="10" r="2.5"/><circle cx="15.5" cy="10" r="2.5"/><circle cx="8.5" cy="16" r="1.75"/><circle cx="15.5" cy="16" r="1.75"/></svg>
+      </div>
+      <span class="service-name">Cook Tops</span>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">
+        <!-- Wall Oven: tall built-in unit, door with handle, controls on top -->
+        <svg viewBox="0 0 24 24"><rect x="3" y="2" width="18" height="20" rx="2"/><line x1="3" y1="6" x2="21" y2="6"/><rect x="6" y="9" width="12" height="9" rx="1"/><line x1="8" y1="20" x2="16" y2="20"/></svg>
+      </div>
+      <span class="service-name">Wall Ovens</span>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">
+        <!-- Garbage Disposal: hopper funnel feeding into cylindrical unit -->
+        <svg viewBox="0 0 24 24"><path d="M6 3 L18 3 L15.5 9 L8.5 9 Z"/><rect x="8" y="9" width="8" height="8" rx="1"/><line x1="12" y1="17" x2="12" y2="21"/><circle cx="12" cy="13" r="2"/></svg>
+      </div>
+      <span class="service-name">Garbage Disposals</span>
+    </div>
+  </div>
+
+  <div class="areas-detail">
+    <div class="areas-detail-title">Areas We Serve</div>
+    <div class="areas-pills">
+      <span class="area-pill">Winchester, VA</span>
+      <span class="area-pill">Frederick County, VA</span>
+      <span class="area-pill">Clarke County, VA</span>
+      <span class="area-pill">Loudoun County, VA</span>
+      <span class="area-pill">Warren County, VA</span>
+      <span class="area-pill">Fairfax County, VA</span>
+      <span class="area-pill">Arlington County, VA</span>
+      <span class="area-pill">Falls Church, VA</span>
+      <span class="area-pill">Vienna, VA</span>
+      <span class="area-pill">And surrounding areas</span>
+    </div>
+  </div>
+
+  <div class="pricing-section">
+    <div class="section-label">How We Charge</div>
+    <h3 class="section-title">Transparent, Upfront Pricing</h3>
+    <p class="section-body">We offer prompt, reliable service and provide straightforward information about your repair costs. No hidden fees &mdash; ever. We accept Visa, MC, American Express, and Discover. Checks are preferred.</p>
+    <div class="pricing-grid">
+      <div class="pricing-card">
+        <span class="pricing-card-title">Service Call / Trip Charge</span>
+        <p class="pricing-card-body">Includes coming to your home, performing a complete diagnosis, and providing a written estimate. Each additional appliance diagnosis is $40.00. We are always mindful of the cost-to-repair vs. replace ratio.</p>
+      </div>
+      <div class="pricing-card">
+        <span class="pricing-card-title">Labor</span>
+        <p class="pricing-card-body">Labor charges are determined by the difficulty of the repair and the amount of time required to complete the work.</p>
+      </div>
+      <div class="pricing-card">
+        <span class="pricing-card-title">Part Cost</span>
+        <p class="pricing-card-body">Part pricing varies by type and brand. We use a variety of distributors to obtain the best price without sacrificing quality. We use factory parts whenever available.</p>
+      </div>
+    </div>
+    <div class="note-callout">
+      <strong>Please Note</strong>
+      Many companies offer to waive the trip charge if you agree to having repairs performed. While this sounds like a money-saving opportunity, it usually isn&rsquo;t &mdash; the charge is typically recouped through inflated parts and labor rates. We like to be upfront about our prices so you know exactly what you are paying for and why.
+    </div>
+  </div>
+</section>
+
+<!-- =======================================================
+     BRANDS  –  Brand tags we service
+     ======================================================= -->
+<div class="brands-section">
+  <div class="brands-inner">
+    <div class="section-label">Brands We Service</div>
+    <h2 class="section-title">We Work on Most Major Brands</h2>
+    <div class="brands-grid">
+      <span class="brand-pill">Maytag</span>
+      <span class="brand-pill">Whirlpool</span>
+      <span class="brand-pill">KitchenAid</span>
+      <span class="brand-pill">Jenn Air</span>
+      <span class="brand-pill">Frigidaire</span>
+      <span class="brand-pill">Electrolux</span>
+      <span class="brand-pill">Bosch</span>
+      <span class="brand-pill">LG</span>
+      <span class="brand-pill">Kenmore</span>
+      <span class="brand-pill">GE</span>
+      <span class="brand-pill">Speed Queen</span>
+      <span class="brand-pill">And More…</span>
+    </div>
+  </div>
+</div>
+
+<!-- =======================================================
+     DISCOUNTS  –  Military & senior discount cards
+     ======================================================= -->
+<section id="discounts">
+  <div class="section-label">Special Offers</div>
+  <h2 class="section-title">We Appreciate Your Service &amp; Age</h2>
+  <p class="section-body">We're proud to offer discounts to those who have served our country and our senior customers.</p>
+
+  <div class="discounts-grid">
+    <div class="discount-card">
+      <div class="discount-pct">10%</div>
+      <div class="discount-title">Military Discount</div>
+      <div class="discount-sub">Available on first appointment for all active and veteran military members.</div>
+    </div>
+    <div class="discount-card">
+      <div class="discount-pct">10%</div>
+      <div class="discount-title">Senior Discount</div>
+      <div class="discount-sub">For customers 65 &amp; over on their first appointment with us.</div>
+    </div>
+  </div>
+</section>
+
+<!-- =======================================================
+     CONTACT  –  Hours, phone numbers, email
+     ======================================================= -->
+<div class="contact-section" id="contact">
+  <div class="contact-inner">
+    <div class="contact-text">
+      <div class="section-label" style="color: var(--gold-light);">Get In Touch</div>
+      <h2 class="section-title">Ready to Book a Repair?</h2>
+      <p class="section-body">Please call to schedule an appointment &mdash; that is the fastest response. We return calls in the order received as quickly as possible.</p>
+      <p class="section-body" style="margin-top:0.75rem;"><strong style="color:rgba(255,255,255,.85);">Office hours:</strong> Mon&ndash;Fri, 9am&ndash;4pm. Service technicians work an extended day from 10am&ndash;8pm, Mon&ndash;Fri. Please provide your phone number when you call.</p>
+      <p class="section-body" style="margin-top:0.5rem; font-size:0.82rem; color:rgba(255,255,255,.4);">*Mondays can be extremely busy. We will return your call as soon as possible. Thank you for your patience.</p>
+    </div>
+    <div class="contact-cards">
+      <div class="contact-card">
+        <div class="contact-card-label">Winchester &amp; Frederick County, VA</div>
+        <div class="contact-card-region">Winchester, Frederick County &amp; surrounding areas</div>
+        <a href="tel:5405357208" class="contact-phone">
+          <svg width="20" height="20" fill="rgba(201,146,42,1)" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8a19.79 19.79 0 01-3.07-8.7A2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
+          540-535-7208
+        </a>
+      </div>
+      <div class="contact-card">
+        <div class="contact-card-label">Fairfax County &amp; Arlington County, VA</div>
+        <div class="contact-card-region">Fairfax County, Arlington County &amp; surrounding areas</div>
+        <a href="tel:7036397470" class="contact-phone">
+          <svg width="20" height="20" fill="rgba(201,146,42,1)" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8a19.79 19.79 0 01-3.07-8.7A2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
+          703-639-7470
+        </a>
+      </div>
+      <div class="contact-card">
+        <div class="contact-card-label">Email</div>
+        <div class="contact-card-region">For non-urgent inquiries</div>
+        <a href="mailto:estesapplianceservice@gmail.com" class="contact-phone" style="font-size:0.875rem; word-break:break-all;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(201,146,42,1)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          estesapplianceservice@gmail.com
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- =======================================================
+     ABOUT US  –  Sam Beswick / company history
+     ======================================================= -->
+<div style="background:var(--white); border-top:1px solid #e4e4e7; border-bottom:1px solid #e4e4e7;">
+<section id="about">
+  <div class="section-label">Our Story</div>
+  <h2 class="section-title">About Estes Appliance Service</h2>
+  <div class="about-body">
+    <p>Sam Beswick, Owner of Estes Appliance Service, is carrying on the tradition of his grandfather, Robert (Buck) Estes. Buck originally founded Estes Appliance Service, and Sam has re-opened the business under the same name &mdash; with his grandfather&rsquo;s blessing &mdash; as a tribute to him. Sam&rsquo;s grandfather began teaching him the appliance repair trade when he was only 10. Sam often rode along with his grandfather on jobs and had a natural mechanical aptitude and a growing understanding of electricity, which helped form his expertise in the appliance repair field.</p>
+    <p>Buck Estes ran Estes Appliance Service for many years and was well known throughout Northern Virginia, particularly in the Arlington area. Estes Appliance Service is still family owned and operated, now out of Winchester, Virginia.</p>
+    <p>Sam was formerly an employee of Betty&rsquo;s Maytag / Betty&rsquo;s Home Appliance Service in Springfield, Virginia, for 21 years. He opened Estes Appliance Service in September of 2015 to continue serving his longtime customers and to welcome new ones. Estes Appliance Service is proud to have an A rating on Angie&rsquo;s List, and is highly rated on Yelp, Consumer&rsquo;s Checkbook, Google, and has over 80+ recommendations on Nextdoor.</p>
+    <p>Our goal is to always offer honest, reliable service at a fair price and to make our customers feel like family. We stand behind the integrity of Estes Appliance Service. The biggest compliment we can receive from our customers is their loyalty and referrals. That is our mission.</p>
+  </div>
+</section>
+</div>
+
+<!-- =======================================================
+     TRIBUTE TO BUCK ESTES  –  In memoriam / obituary
+     ======================================================= -->
+<section id="tribute">
+  <div class="section-label">In Memoriam</div>
+  <h2 class="section-title">In Memory of Buck Estes</h2>
+  <div class="tribute-body">
+    <p>ROBERT WELFORD ESTES, JR. &ldquo;Buck&rdquo; &mdash; Beloved husband, father, grandfather and great-grandfather, Robert Welford &ldquo;Buck&rdquo; Estes, Jr., age 90, of Gordonsville, Virginia, passed away Sunday, May 29, 2016 from complications of a four-wheeler accident. Buck chose to take risks and live life to the fullest.</p>
+    <p>Buck is survived by his loving wife and WWII pen pal, Leona Francis Tanner, two sisters &mdash; Virginia (Gin) Miller of Rochelle, Va. and Evelyn Mackey of Sorrento, Fla. &mdash; five children, Sue Luthi and husband Mike of Sperryville, Ronnie Estes and wife Linda of Powhatan, Donnie Estes of Gordonsville, Donna Beswick and Debbie Estes both of Annandale; eight grandchildren, Lisa, John, Sam, Matt, Kelly, Shelby, Katie, and Carly; and 20 great-grandchildren.</p>
+    <p>Buck was born in Rochelle, Virginia on September 27, 1925 to Beulah Tusing and Robert Welford Estes Sr. In 1943, at the age of 18, he entered the United States Marine Corps. He served in the South Pacific on the Island of Peleliu. When the war ended, anxious to return home, Buck chose to ride the crow&rsquo;s nest of the USS Maryland to its port in San Diego, California. Following his honorable discharge from military service in 1946, Buck moved to the Northern Virginia area where he began a career as an appliance repairman.</p>
+    <p>After many years of working for Solon Service, he eventually opened his own business, Estes Appliance Service, where he served the Washington Metropolitan area for over 40 years. Although living and working in Fairfax County, he maintained ties to the Piedmont area, owning and operating Circle Laundromat in Gordonsville with his sister, Virginia Miller, from 1967 to 1987. In 1966 he purchased a farm outside of Gordonsville, and upon his retirement in 1991 he and his wife built a home to live out his life-long dream of farming his own land.</p>
+    <p>For 65 years he was a member of Union Grove Christian Church, where he also served as a deacon. He was a member of the Barboursville Ruritan Club for more than 20 years before being recognized as an Honorary Member in 2016. Buck never met a stranger. He enjoyed telling stories, dancing, and feeding his grandchildren and great-grandchildren M&amp;M&rsquo;s out of his shirt pocket. He loved The Lord, his family and friends, and his life.</p>
+  </div>
+</section>
+
+<!-- =======================================================
+     FOOTER
+     ======================================================= -->
+<footer>
+  <p>&copy; 2025 Estes Appliance Service &nbsp;&mdash;&nbsp; Licensed &amp; Insured &nbsp;&mdash;&nbsp; Family Owned &amp; Operated</p>
+  <p style="margin-top:0.4rem;">Winchester / Frederick Co: <a href="tel:5405357208">540-535-7208</a> &nbsp;&bull;&nbsp; Fairfax / Arlington Co: <a href="tel:7036397470">703-639-7470</a></p>
+</footer>
+
+<script>
+  function toggleMenu(btn) {
+    btn.classList.toggle('open');
+    document.getElementById('mobileMenu').classList.toggle('open');
+  }
+
+  // close mobile menu when a link is clicked
+  document.querySelectorAll('#mobileMenu a').forEach(a => {
+    a.addEventListener('click', () => {
+      document.querySelector('.hamburger').classList.remove('open');
+      document.getElementById('mobileMenu').classList.remove('open');
+    });
+  });
+
+  // ── SCROLLSPY ──
+  const navLinks = document.querySelectorAll('.nav-links a, #mobileMenu a');
+  const sections = Array.from(document.querySelectorAll('#services, #contact, #about, #tribute'));
+
+  function setActive(id) {
+    navLinks.forEach(a => {
+      a.classList.toggle('active', a.getAttribute('href') === (id ? '#' + id : '#'));
+    });
+  }
+
+  function updateActive() {
+    let current = null;
+    sections.forEach(s => {
+      if (s.getBoundingClientRect().top <= 80) current = s.id;
+    });
+    setActive(current);
+  }
+
+  window.addEventListener('scroll', updateActive, { passive: true });
+  window.addEventListener('touchmove', updateActive, { passive: true });
+  updateActive();
+</script>
+
+</body>
+</html>

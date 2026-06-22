@@ -6,7 +6,8 @@
   <title>Estes Appliance Service – Northern Virginia Appliance Repair</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet" />
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" /></noscript>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -21,6 +22,7 @@
       --gray-600: #52525b;
       --gray-800: #27272a;
       --white: #ffffff;
+      --gold-text: #8a5f12;
       --shadow-sm: 0 1px 3px rgba(0,0,0,.12), 0 1px 2px rgba(0,0,0,.08);
       --shadow-md: 0 4px 16px rgba(0,0,0,.15);
       --shadow-lg: 0 10px 40px rgba(0,0,0,.2);
@@ -297,7 +299,7 @@
       font-weight: 700;
       letter-spacing: .1em;
       text-transform: uppercase;
-      color: var(--gold);
+      color: var(--gold-text);
       margin-bottom: 0.5rem;
     }
 
@@ -666,7 +668,7 @@
       <li><a href="#about">About Us</a></li>
       <li><a href="#tribute">Tribute to Buck Estes</a></li>
     </ul>
-    <button class="hamburger" aria-label="Toggle menu" onclick="toggleMenu(this)">
+    <button class="hamburger" aria-label="Toggle menu" aria-expanded="false" onclick="toggleMenu(this)">
       <span></span><span></span><span></span>
     </button>
   </div>
@@ -679,12 +681,14 @@
   </div>
 </nav>
 
+<main>
+
 <!-- =======================================================
      HERO  –  Kitchen image + service area phone numbers
      ======================================================= -->
 <div class="hero">
   <div class="hero-image">
-    <img src="images/homepageImage.jpg" alt="Modern kitchen with stainless steel appliances" />
+    <img src="images/homepageImage.jpg" alt="Modern kitchen with stainless steel appliances" fetchpriority="high" />
   </div>
   <div class="hero-content">
     <div class="hero-badge">
@@ -913,7 +917,7 @@
       <h2 class="section-title">Ready to Book a Repair?</h2>
       <p class="section-body">Please call to schedule an appointment &mdash; that is the fastest response. We return calls in the order received as quickly as possible.</p>
       <p class="section-body" style="margin-top:0.75rem;"><strong style="color:rgba(255,255,255,.85);">Office hours:</strong> Mon&ndash;Fri, 9am&ndash;4pm. Service technicians work an extended day from 10am&ndash;8pm, Mon&ndash;Fri. Please provide your phone number when you call.</p>
-      <p class="section-body" style="margin-top:0.5rem; font-size:0.82rem; color:rgba(255,255,255,.4);">*Mondays can be extremely busy. We will return your call as soon as possible. Thank you for your patience.</p>
+      <p class="section-body" style="margin-top:0.5rem; font-size:0.82rem; color:rgba(255,255,255,.65);">*Mondays can be extremely busy. We will return your call as soon as possible. Thank you for your patience.</p>
     </div>
     <div class="contact-cards">
       <div class="contact-card">
@@ -975,6 +979,8 @@
   </div>
 </section>
 
+</main>
+
 <!-- =======================================================
      FOOTER
      ======================================================= -->
@@ -987,6 +993,7 @@
   function toggleMenu(btn) {
     btn.classList.toggle('open');
     document.getElementById('mobileMenu').classList.toggle('open');
+    btn.setAttribute('aria-expanded', btn.classList.contains('open'));
   }
 
   // close mobile menu when a link is clicked
@@ -1014,6 +1021,8 @@
     });
     setActive(current);
   }
+
+  document.querySelectorAll('svg').forEach(svg => svg.setAttribute('aria-hidden', 'true'));
 
   window.addEventListener('scroll', updateActive, { passive: true });
   window.addEventListener('touchmove', updateActive, { passive: true });

@@ -991,30 +991,51 @@
 </footer>
 
 <script>
+  'use strict';
+
+  /* ── MOBILE NAV ── */
+
+  /**
+   * Toggles the mobile hamburger menu open/closed.
+   * Called via inline onclick on the hamburger button.
+   * Updates aria-expanded so screen readers announce the menu state.
+   */
   function toggleMenu(btn) {
     btn.classList.toggle('open');
     document.getElementById('mobileMenu').classList.toggle('open');
     btn.setAttribute('aria-expanded', btn.classList.contains('open'));
   }
 
-  // close mobile menu when a link is clicked
+  /* Close the mobile menu when any nav link is tapped, and reset aria-expanded */
   document.querySelectorAll('#mobileMenu a').forEach(a => {
     a.addEventListener('click', () => {
-      document.querySelector('.hamburger').classList.remove('open');
+      const hamburger = document.querySelector('.hamburger');
+      hamburger.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', 'false');
       document.getElementById('mobileMenu').classList.remove('open');
     });
   });
 
-  // ── SCROLLSPY ──
+  /* ── SCROLLSPY ──
+     Highlights the active nav link based on which section
+     is currently visible in the viewport. */
   const navLinks = document.querySelectorAll('.nav-links a, #mobileMenu a');
   const sections = Array.from(document.querySelectorAll('#services, #contact, #about, #tribute'));
 
+  /**
+   * Applies the 'active' class to the nav link matching the given section id.
+   * Pass null to fall back to highlighting the home/top link.
+   */
   function setActive(id) {
     navLinks.forEach(a => {
       a.classList.toggle('active', a.getAttribute('href') === (id ? '#' + id : '#'));
     });
   }
 
+  /**
+   * Determines which section is currently in view and updates the active nav link.
+   * A section is considered active once its top edge is within 80px of the viewport top.
+   */
   function updateActive() {
     let current = null;
     sections.forEach(s => {
@@ -1023,10 +1044,14 @@
     setActive(current);
   }
 
+  /* Mark all inline SVG icons as decorative so screen readers skip them */
   document.querySelectorAll('svg').forEach(svg => svg.setAttribute('aria-hidden', 'true'));
 
+  /* Attach passive scroll/touch listeners to keep scrollspy performant on all devices */
   window.addEventListener('scroll', updateActive, { passive: true });
   window.addEventListener('touchmove', updateActive, { passive: true });
+
+  /* Set initial active state on page load */
   updateActive();
 </script>
 
